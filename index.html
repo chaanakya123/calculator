@@ -1,5 +1,42 @@
 <html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Microsoft Teams JavaScript API (via CDN) -->
+    <script src="https://statics.teams.microsoft.com/sdk/v1.5.2/js/MicrosoftTeams.min.js" crossorigin="anonymous"></script>
+    <script src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
+
+    <script>
+		var microsoftTeams;
+
+		// Set up the tab and stuff.
+		$(document).ready(function () {
+			microsoftTeams.initialize();
+
+			microsoftTeams.getContext((context) => {
+				console.log("context : " + context)
+			});
+
+			// microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
+			// 	microsoftTeams.settings.setSettings({
+			// 		suggestedDisplayName: "Bot Info",
+			// 		contentUrl: createTabUrl(),
+			// 		entityId: "test123",
+			// 		websiteUrl: createTabUrl(),
+			// 	});
+			// 	saveEvent.notifySuccess();
+			// });
+			//
+			// microsoftTeams.settings.setValidityState(true);
+		});
+
+		function createTabUrl() {
+			return window.location.protocol + "//" + window.location.host + "/default";
+		}
+    </script>
+</head>
 <body>
 <h1> calculator </h1>
+
 </body>
 </html>
