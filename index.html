@@ -11,9 +11,9 @@
 			["a98120a0-3105-4a0a-a2ba-3f8e58c5ecb2", "https://chaanakya1.service-now.com/"]
 		]);
 
-        function login() {
+        async function login() {
         	let tid;
-			microsoftTeams.getContext((context) => {
+			await microsoftTeams.getContext((context) => {
 				console.log("context tid in login: " + context.tid);
 				tid = context.tid;
 			});
