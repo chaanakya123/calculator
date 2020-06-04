@@ -16,28 +16,27 @@
 			await microsoftTeams.getContext((context) => {
 				console.log("context tid in login: " + context.tid);
 				tid = context.tid;
+				for (const [key, value] of instances.entries()) {
+					console.log(key, value);
+					console.log("type of key: " + typeof(key));
+					console.log("type of tid: " + typeof(tid));
+					if(key.trim() === tid.trim()) {
+						console.log("entered if condition")
+						microsoftTeams.authentication.authenticate({
+							url: value + "login",
+							width: 600,
+							height: 535,
+							successCallback: function (result) {
+								console.log("Login succeeded: " + result);
+								console.log("access token : " + result.accessToken)
+							},
+							failureCallback: function (reason) {
+								console.log("Login failed: " + reason);
+							}
+						});
+					}
+				}
 			});
-
-			for (const [key, value] of instances.entries()) {
-				console.log(key, value);
-				console.log("type of key: " + typeof(key));
-				console.log("type of tid: " + typeof(tid));
-				if(key.trim() === tid.trim()) {
-					console.log("entered if condition")
-					microsoftTeams.authentication.authenticate({
-						url: value + "login",
-						width: 600,
-						height: 535,
-						successCallback: function (result) {
-							console.log("Login succeeded: " + result);
-							console.log("access token : " + result.accessToken)
-						},
-						failureCallback: function (reason) {
-							console.log("Login failed: " + reason);
-						}
-					});
-                }
-			}
         }
 
 
