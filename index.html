@@ -20,7 +20,9 @@
 
 			for (const [key, value] of instances.entries()) {
 				console.log(key, value);
-				if(key == tid) {
+				console.log("type of key: " + typeof(key));
+				console.log("type of tid: " + typeof(tid));
+				if(key.trim() === tid.trim()) {
 					console.log("entered if condition")
 					microsoftTeams.authentication.authenticate({
 						url: value + "login",
