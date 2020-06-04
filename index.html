@@ -7,13 +7,50 @@
     <script src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
 
     <script>
+		var instances = new Map([
+			["a98120a0-3105-4a0a-a2ba-3f8e58c5ecb2", "https://chaanakya1.service-now.com/"]
+		]);
+
+        function login() {
+        	let tid;
+			microsoftTeams.getContext((context) => {
+				console.log("context tid in login: " + context.tid);
+				tid = context.tid;
+			});
+
+			for (const [key, value] of instances.entries()) {
+				console.log(key, value);
+				if(key === tid) {
+					console.log("entered if condition")
+					microsoftTeams.authentication.authenticate({
+						url: value + "login",
+						width: 600,
+						height: 535,
+						successCallback: function (result) {
+							console.log("Login succeeded: " + result);
+							console.log("access token : " + result.accessToken)
+						},
+						failureCallback: function (reason) {
+							console.log("Login failed: " + reason);
+						}
+					});
+                }
+			}
+        }
+
+
+
+		var microsoftTeams;
+
 		// Set up the tab and stuff.
 		$(document).ready(function () {
 			microsoftTeams.initialize();
-
-			microsoftTeams.getContext((context) => {
-				console.log("context : " + JSON.stringify(context))
-			});
+			// microsoftTeams.getContext((context) => {
+			// 	    console.log("context : " + JSON.stringify(context))
+            //      tid = context.tid;
+			// });
+            //
+			// console.log("tid : " + tid);
 
 			// microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
 			// 	microsoftTeams.settings.setSettings({
@@ -34,7 +71,7 @@
     </script>
 </head>
 <body>
-<h1> calculator </h1>
+<button onclick="login()">Login</button>
 
 </body>
 </html>
