@@ -17,9 +17,6 @@
 				console.log("context tid in login: " + context.tid);
 				tid = context.tid;
 				for (const [key, value] of instances.entries()) {
-					console.log(key, value);
-					console.log("type of key: " + typeof(key));
-					console.log("type of tid: " + typeof(tid));
 					if(key === tid) {
 						console.log("entered if condition")
 						microsoftTeams.authentication.authenticate({
@@ -72,6 +69,7 @@
     </script>
 </head>
 <body>
+Please click the button below
 <button onclick="login()">Login</button>
 
 </body>
